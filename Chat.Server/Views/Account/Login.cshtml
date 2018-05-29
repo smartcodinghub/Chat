@@ -1,1 +1,18 @@
-﻿
+﻿@model LoginViewModel
+
+<section>
+    <form method="post">
+        <!-- USER NAME-->
+        <div class="form-group">
+            <input class="form-control col-sm-10" asp-for="UserName" placeholder="User Name" />
+        </div>
+        <!-- PASSWORD -->
+        <div class="form-group">
+            <input class="form-control col-sm-10" type="password" asp-for="Password" placeholder="Password" />
+        </div>
+        <!-- SUBMIT BUTTON -->
+        <div class="form-group">
+            <button class="btn btn-primary btn-block" type="submit">Log in</button>
+        </div>
+    </form>
+</section>

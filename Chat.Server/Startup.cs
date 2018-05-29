@@ -12,9 +12,9 @@ namespace Chat.Server
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddSignalR();
+            //services.AddSignalR();
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
-            services.AddSingleton<IUserRepository, UserRepository>();
+            //services.AddSingleton<IUserRepository, UserRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -25,8 +25,10 @@ namespace Chat.Server
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseStaticFiles();
+
             app.UseAuthentication();
-            app.UseSignalR(routes => routes.MapHub<ChatHub>(ChatHub.Path));
+            //app.UseSignalR(routes => routes.MapHub<ChatHub>(ChatHub.Path));
 
             app.UseMvcWithDefaultRoute();
         }

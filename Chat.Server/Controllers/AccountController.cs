@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Chat.Server.Crosscutting;
@@ -12,21 +13,25 @@ namespace Chat.Server.Controllers
     [Authorize]
     public class AccountController : Controller
     {
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult Login() => View();
+
         [HttpPost]
         [AllowAnonymous]
         public async Task<IActionResult> Login(LoginViewModel login)
         {
             try
             {
-                var claims = new Claim(ClaimTypes.Name, login.User).Enumerate();
+                var claims = new Claim(ClaimTypes.Name, login.UserName).Enumerate();
                 ClaimsIdentity identity = new ClaimsIdentity(claims, "cookie");
                 ClaimsPrincipal principal = new ClaimsPrincipal(identity);
 
                 await HttpContext.SignInAsync(principal);
             }
-            catch { return StatusCode(500); }
+            catch { return View(); }
 
-            return Ok();
+            return RedirectToAction(nameof(ChatController.Index), "Chat");
         }
 
         [HttpGet, HttpPost]

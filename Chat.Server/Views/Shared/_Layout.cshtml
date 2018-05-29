@@ -9,6 +9,29 @@
     <link href="~/css/bootstrap-grid.min.css" rel="stylesheet" />
 </head>
 <body>
+
+    @if(User.Identity.IsAuthenticated)
+    {
+        <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+            <div class="container">
+                <div class="navbar-header">
+                    <a asp-controller="Chat" asp-action="Index"><h1>CHAT</h1></a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav"></ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle truncateStringEllipsis username" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" title="@User.Identity.Name"><span class="glyphicon glyphicon-user"></span> @User.Identity.Name<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><form asp-controller="Account" asp-action="Logout" method="post"><button type="submit" class="btn-logout"><span class="glyphicon glyphicon-log-out"></span><span> Logout</span></button></form></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    }
+
     <div class="container body-content">@RenderBody()</div>
 
     <script src="~/js/jquery-3.3.1.min.js"></script>
