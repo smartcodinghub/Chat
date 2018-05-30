@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Chat.Server.Infraestructure.Data;
+using Chat.Server.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
@@ -15,7 +17,7 @@ namespace Chat.Server
         /// <summary>
         /// Ruta donde este hub escucha
         /// </summary>
-        public const String Path = "/chat";
+        public const String Path = "/chathub";
 
         private IUserRepository repository;
 
@@ -27,8 +29,9 @@ namespace Chat.Server
         public Task Send(string to, String message)
         {
             var senderName = Context.User.Identity.Name;
+            User toUser = repository.Find(to);
 
-            return Clients.Client(repository.Find(to))
+            return Clients.Client(toUser.ConnectionId)
                 .Received(senderName, DateTime.Now, message);
         }
 
@@ -42,10 +45,9 @@ namespace Chat.Server
 
         public override async Task OnDisconnectedAsync(Exception exception)
         {
-            repository.Remove(Context.ConnectionId);
-            var context = Context.GetHttpContext();
+            repository.Remove(Context.User.Identity.Name);
 
-            await context.SignOutAsync();
+            await Context.GetHttpContext().SignOutAsync();
             await base.OnDisconnectedAsync(exception);
         }
     }

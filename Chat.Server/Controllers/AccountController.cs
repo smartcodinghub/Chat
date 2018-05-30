@@ -31,7 +31,7 @@ namespace Chat.Server.Controllers
             }
             catch { return View(); }
 
-            return RedirectToAction(nameof(ChatController.Index), "Chat");
+            return RedirectToAction(nameof(UsersController.Index), "Users");
         }
 
         [HttpGet, HttpPost]
@@ -39,7 +39,7 @@ namespace Chat.Server.Controllers
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync();
-            return Ok();
+            return RedirectToAction(nameof(Login));
         }
     }
 }

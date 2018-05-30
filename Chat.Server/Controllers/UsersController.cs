@@ -11,11 +11,18 @@ using Microsoft.AspNetCore.Mvc;
 namespace Chat.Server.Controllers
 {
     [Authorize]
-    public class ChatController : Controller
+    public class UsersController : Controller
     {
+        private IUserRepository repository;
+
+        public UsersController(IUserRepository repository)
+        {
+            this.repository = repository;
+        }
+
         public IActionResult Index()
         {
-            return View(new ChatViewModel() { OtherUser = "Paco" });
+            return View(new UsersViewModel { Users = repository.GetAll().Append(new User("Paco", "Pep")).Append(new User("Paco1", "Pep")).Append(new User("Paco2", "Pep")) });
         }
     }
 }

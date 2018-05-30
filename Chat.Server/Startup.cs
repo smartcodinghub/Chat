@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication.Cookies;
+﻿using Chat.Server.Infraestructure.Data;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -7,17 +8,29 @@ namespace Chat.Server
 {
     public class Startup
     {
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+        /// <summary>
+        /// Dependency Injection configuration
+        /// </summary>
+        /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            //services.AddSignalR();
+            services.AddSignalR();
+            services.AddSingleton<IUserRepository, UserRepository>();
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
-            //services.AddSingleton<IUserRepository, UserRepository>();
+
+            services.ConfigureApplicationCookie(opt =>
+            {
+                opt.LoginPath = "/Account/Login";
+                opt.LogoutPath = "/Account/Logout";
+            });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// <summary>
+        /// Server Pipeline
+        /// </summary>
+        /// <param name="app"></param>
+        /// <param name="env"></param>
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if(env.IsDevelopment())
@@ -28,9 +41,10 @@ namespace Chat.Server
             app.UseStaticFiles();
 
             app.UseAuthentication();
-            //app.UseSignalR(routes => routes.MapHub<ChatHub>(ChatHub.Path));
 
-            app.UseMvcWithDefaultRoute();
+            app.UseSignalR(routes => routes.MapHub<ChatHub>(ChatHub.Path));
+
+            app.UseMvc(routes => routes.MapRoute("default", "{Controller=Users}/{Action=Index}"));
         }
     }
 }

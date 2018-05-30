@@ -1,18 +1,21 @@
 ﻿@model LoginViewModel
 
-<section>
+<div class="login-main-form col-sm-8 offset-2">
     <form method="post">
+        <div class="form-group col-sm-12">
+            <h3>Enter your credentials:</h3>
+        </div>
         <!-- USER NAME-->
-        <div class="form-group">
-            <input class="form-control col-sm-10" asp-for="UserName" placeholder="User Name" />
+        <div class="form-group col-sm-12">
+            <input class="form-control " asp-for="UserName" placeholder="User Name" />
         </div>
         <!-- PASSWORD -->
-        <div class="form-group">
-            <input class="form-control col-sm-10" type="password" asp-for="Password" placeholder="Password" />
+        <div class="form-group col-sm-12">
+            <input class="form-control" type="password" asp-for="Password" placeholder="Password" />
         </div>
         <!-- SUBMIT BUTTON -->
-        <div class="form-group">
+        <div class="form-group col-sm-12">
             <button class="btn btn-primary btn-block" type="submit">Log in</button>
         </div>
     </form>
-</section>
+</div>
