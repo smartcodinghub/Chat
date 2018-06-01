@@ -1,5 +1,6 @@
 ﻿body, html {
-    height: 100%
+    height: 100%;
+    font-family: sans-serif;
 }
 
 h1, h2, h3, h4 {
@@ -11,6 +12,21 @@ h1, h2, h3, h4 {
     margin-top: -78px;
     padding-top: 120px;
 }
+
+#navbar {
+    background-color: #4b89ba;
+    border-radius: 10px;
+    padding: 3px;
+}
+
+    #navbar a {
+        color: white;
+    }
+
+    #navbar:hover, #navbar:active {
+        background-color: #4C5C68;
+        animation: updown .5s ease;
+    }
 
 .navbar-custom {
     background-color: #f5f5f5;
@@ -36,10 +52,6 @@ h1, h2, h3, h4 {
     padding: 30px 15px 15px 15px;
 }
 
-.btn-primary {
-    background-color: #3094ff;
-}
-
 .chat-view {
     position: relative;
     height: calc(100% - 49px);
@@ -48,8 +60,10 @@ h1, h2, h3, h4 {
 #chat-messages {
     position: absolute;
     top: 20px;
-    bottom: 139px;
-    width: 100%;
+    bottom: 170px;
+    width: calc(100% + 15px);
+    overflow-y: auto;
+    padding-right: 15px;
 }
 
     #chat-messages .chat-message {
@@ -71,37 +85,119 @@ h1, h2, h3, h4 {
 
 #chat-send {
     position: absolute;
-    bottom: 79px;
+    bottom: 110px;
     width: 100%;
 }
 
     #chat-send div {
     }
 
-.users-row {
+.btn-primary {
+    background-color: #4b89ba;
+}
+
+    .btn-primary:hover, .btn-primary:focus {
+        background-color: #4C5C68;
+        animation: updown .5s ease;
+    }
+
+.users-table {
     background-color: #f5f5f5;
-    padding: 20px 25px 20px 25px;
     border: 1px solid #ddd;
     border-radius: 10px;
-    margin: 20px 0 20px 0;
+    padding: 30px 15px 15px 15px;
+}
+
+    .users-table div {
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
+.users-row a {
+    display: inline-block;
+    padding: 10px 7px 10px 25px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
     width: 100%;
 }
 
-    .users-row:hover {
-        background-color: #e0e0e0;
-        cursor: pointer;
+.users-row:nth-child(4n+1) a {
+    background: #66BCFF;
+}
+
+.users-row:nth-child(4n+2) a {
+    background-color: #4B89BA;
+}
+
+.users-row:nth-child(4n+3) a {
+    background: #8FCEFF;
+}
+
+.users-row:nth-child(4n+4) a {
+    background: #B9E0FF;
+}
+
+.users-row a:hover {
+    background-color: #4C5C68;
+    cursor: pointer;
+    animation: swing 3s ease;
+}
+
+.users-row:hover a {
+    color: white;
+}
+
+.users-row a {
+    font-size: 30px;
+    font-weight: 500;
+    color: white;
+}
+
+    .users-row a:hover {
+        text-decoration: none;
     }
 
-        .users-row:hover a {
-            color: #404040;
-        }
 
-    .users-row a {
-        font-size: 30px;
-        font-weight: 500;
-        color: #505050;
+#layout-logo {
+    width: 100%;
+}
+
+    #layout-logo img {
+        float: right;
+        width: 140px;
+        padding-right: 20px;
     }
 
-        .users-row a:hover {
-            text-decoration: none;
-        }
+@keyframes swing {
+
+    0% {
+        -webkit-transform: translateX(-10px);
+        transform: translateX(-10px);
+    }
+
+    50% {
+        -webkit-transform: translateX(0px);
+        transform: translateX(0px);
+    }
+
+    100% {
+        -webkit-transform: translateX(10);
+        transform: translateX(10);
+    }
+}
+
+
+@keyframes updown {
+
+    0% {
+        transform: translateX(0px);
+    }
+
+    50% {
+        transform: translateX(3px);
+    }
+
+    100% {
+        transform: translateX(-3px);
+    }
+}

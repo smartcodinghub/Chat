@@ -7,7 +7,8 @@
 
     <link href="~/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/css/bootstrap-grid.min.css" rel="stylesheet" />
-    <link href="~/css/site.min.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 </head>
 <body>
 
@@ -16,7 +17,7 @@
             <div class="navbar-header">
                 <a class="navbar-title" asp-controller="Users">Chat SignalR.Net</a>
             </div>
-            @if(User.Identity.IsAuthenticated)
+            @if (User.Identity.IsAuthenticated)
             {
                 <div id="navbar" class="navbar-right">
                     <a class="btn btn-logout" asp-controller="Account" asp-action="Logout">Logout</a>
@@ -28,7 +29,9 @@
     <div class="container body-content">@RenderBody()</div>
 
     <footer class="navbar navbar-custom fixed-bottom">
-        <img class="pull-right" src="/images/logo_minsait_min.png" alt="logo Minsait">
+        <div id="layout-logo">
+            <img src="/images/minsait_logo.png" alt="logo Minsait">
+        </div>
     </footer>
 
     <script src="~/js/jquery-3.3.1.min.js"></script>

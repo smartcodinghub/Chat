@@ -13,14 +13,20 @@
 
 function subscribe(connection) {
 
+    var textinput = $("#chat-text");
+    var messages = $("#chat-messages");
+
     connection.on("Received", (user, date, message) => {
-        $("#chat-messages ").append('<div class="chat-message row"><div class="col-md-4 col-xs-12"><p>' + message + '</p></div></div>');
+        messages.append('<div class="chat-message row"><div class="col-md-4 col-xs-12"><p>' + message + '</p></div></div>');
+        messages.scrollTop(messages.prop("scrollHeight"));
     });
 
     var send = function () {
-        var text = $("#chat-text").val();
+        var text = textinput.val();
         connection.invoke("send", username, text);
-        $("#chat-messages ").append('<div class="chat-message row right"><div class="col-md-4 offset-8 col-xs-12"><p>' + text + '</p></div></div>');
+        messages.append('<div class="chat-message row right"><div class="col-md-4 offset-8 col-xs-12"><p>' + text + '</p></div></div>');
+        messages.scrollTop(messages.prop("scrollHeight"));
+        textinput.val('');
     }
 
     $("#chat-send-button").click(send);
