@@ -11,7 +11,7 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+    <nav class="navbar navbar-default navbar-custom">
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-title" asp-controller="Chat" asp-action="Index">Chat SignalR.Net</a>
@@ -26,6 +26,10 @@
     </nav>
 
     <div class="container body-content">@RenderBody()</div>
+
+    <footer class="navbar navbar-custom fixed-bottom">
+        <img class="pull-right" src="/images/logo_minsait_min.png" alt="logo Minsait">
+    </footer>
 
     <script src="~/js/jquery-3.3.1.min.js"></script>
     <script src="~/js/bootstrap.min.js"></script>
