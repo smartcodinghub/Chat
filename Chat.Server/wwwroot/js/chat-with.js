@@ -2,7 +2,6 @@
 
     const connection = new signalR.HubConnectionBuilder()
         .withUrl("/chathub")
-        .configureLogging(signalR.LogLevel.Information)
         .build();
 
     connection.start()
@@ -11,27 +10,10 @@
 
 }
 
+// R '<div class="chat-message row"><div class="col-md-4 col-xs-12"><p>' + message + '</p></div></div>'
+// S '<div class="chat-message row right"><div class="col-md-4 offset-8 col-xs-12"><p>' + text + '</p></div></div>'
+// keyup 13, messages.scrollTop(messages.prop("scrollHeight"));
+
 function subscribe(connection) {
-
-    var textinput = $("#chat-text");
-    var messages = $("#chat-messages");
-
-    connection.on("Received", (user, date, message) => {
-        messages.append('<div class="chat-message row"><div class="col-md-4 col-xs-12"><p>' + message + '</p></div></div>');
-        messages.scrollTop(messages.prop("scrollHeight"));
-    });
-
-    var send = function () {
-        var text = textinput.val();
-        connection.invoke("send", username, text);
-        messages.append('<div class="chat-message row right"><div class="col-md-4 offset-8 col-xs-12"><p>' + text + '</p></div></div>');
-        messages.scrollTop(messages.prop("scrollHeight"));
-        textinput.val('');
-    }
-
-    $("#chat-send-button").click(send);
-
-    $("#chat-text").keyup(e => {
-        if (e.keyCode == 13) send();
-    });
+        
 }

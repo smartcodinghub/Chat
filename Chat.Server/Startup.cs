@@ -16,8 +16,6 @@ namespace Chat.Server
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddSignalR();
-            services.AddSingleton<IUserRepository, UserRepository>();
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
 
             services.ConfigureApplicationCookie(opt =>
@@ -40,11 +38,7 @@ namespace Chat.Server
             }
 
             app.UseStaticFiles();
-
             app.UseAuthentication();
-
-            app.UseSignalR(routes => routes.MapHub<ChatHub>(ChatHub.Path));
-
             app.UseMvc(routes =>
             {
                 routes.MapRoute("default", "{Controller=Users}/{Action=Index}");

@@ -1,19 +1,5 @@
-﻿@model UsersViewModel
+﻿@*@model UsersViewModel*@
 
-<div class="row">
-
-    <div class="users-table col-sm-10 offset-1">
-
-        <div class="col-sm-12">
-            <h3>Select the user to chat!</h3>
-        </div>
-
-        @foreach(User user in Model.Users)
-        {
-            <div class="col-sm-12 users-row">
-                <a asp-controller="Chat" asp-action="With" asp-route-user="@user.Name">@user.Name</a>
-            </div>
-        }
-
-    </div>
-</div>
+// row
+// users-table
+// users-row

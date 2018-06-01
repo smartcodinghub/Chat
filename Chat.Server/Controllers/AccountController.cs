@@ -43,7 +43,7 @@ namespace Chat.Server.Controllers
             }
             catch { return View(); }
 
-            return RedirectToAction(nameof(UsersController.Index), "Users");
+            return RedirectToAction("Index", "Users");
         }
 
         [HttpGet, HttpPost]
