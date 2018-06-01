@@ -4,5 +4,11 @@
     "inputFiles": [
       "wwwroot/css/site.css"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/js/chat-with.min.js",
+    "inputFiles": [
+      "wwwroot/js/chat-with.js"
+    ]
   }
 ]

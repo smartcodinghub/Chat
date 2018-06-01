@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
 
-namespace Chat.Server
+namespace Chat.Server.SignalR
 {
     /// <summary>
     /// Hub para el tiempo real
@@ -26,28 +26,31 @@ namespace Chat.Server
             this.repository = repository;
         }
 
-        public Task Send(string to, String message)
+        public async Task<bool> Send(string to, String message)
         {
             var senderName = Context.User.Identity.Name;
             User toUser = repository.Find(to);
 
-            return Clients.Client(toUser.ConnectionId)
+            if(toUser == null) return false;
+
+            await Clients.Client(toUser.ConnectionId)
                 .Received(senderName, DateTime.Now, message);
+
+            return true;
         }
 
         public override async Task OnConnectedAsync()
         {
             var senderName = Context.User.Identity.Name;
-            repository.Register(senderName, Context.ConnectionId);
+            repository.Update(senderName, Context.ConnectionId);
 
             await base.OnConnectedAsync();
         }
 
         public override async Task OnDisconnectedAsync(Exception exception)
         {
-            repository.Remove(Context.User.Identity.Name);
+            repository.Update(Context.User.Identity.Name, null);
 
-            await Context.GetHttpContext().SignOutAsync();
             await base.OnDisconnectedAsync(exception);
         }
     }

@@ -1,4 +1,5 @@
 ﻿using Chat.Server.Infraestructure.Data;
+using Chat.Server.SignalR;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -44,7 +45,11 @@ namespace Chat.Server
 
             app.UseSignalR(routes => routes.MapHub<ChatHub>(ChatHub.Path));
 
-            app.UseMvc(routes => routes.MapRoute("default", "{Controller=Users}/{Action=Index}"));
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute("default", "{Controller=Users}/{Action=Index}");
+                routes.MapRoute("chat", "{Controller}/{Action}/{user}");
+            });
         }
     }
 }

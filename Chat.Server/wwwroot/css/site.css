@@ -1,13 +1,15 @@
-﻿body {
+﻿body, html {
+    height: 100%
 }
 
 h1, h2, h3, h4 {
     color: #505050;
 }
 
-.body-content {
-    margin-top: 60px;
-    margin-bottom: 60px;
+.container.body-content {
+    height: 100%;
+    margin-top: -78px;
+    padding-top: 120px;
 }
 
 .navbar-custom {
@@ -37,6 +39,44 @@ h1, h2, h3, h4 {
 .btn-primary {
     background-color: #3094ff;
 }
+
+.chat-view {
+    position: relative;
+    height: calc(100% - 49px);
+}
+
+#chat-messages {
+    position: absolute;
+    top: 20px;
+    bottom: 139px;
+    width: 100%;
+}
+
+    #chat-messages .chat-message {
+        margin-top: 10px;
+    }
+
+
+        #chat-messages .chat-message div p {
+            display: inline-block;
+            border-radius: 10px;
+            padding: 10px;
+            background-color: #e0f3ff;
+        }
+
+        #chat-messages .chat-message.right div p {
+            float: right;
+            background-color: #a5d8fa;
+        }
+
+#chat-send {
+    position: absolute;
+    bottom: 79px;
+    width: 100%;
+}
+
+    #chat-send div {
+    }
 
 .users-row {
     background-color: #f5f5f5;

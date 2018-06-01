@@ -22,7 +22,7 @@ namespace Chat.Server.Controllers
 
         public IActionResult Index()
         {
-            return View(new UsersViewModel { Users = repository.GetAll().Append(new User("Paco", "Pep")).Append(new User("Paco1", "Pep")).Append(new User("Paco2", "Pep")) });
+            return View(new UsersViewModel { Users = repository.GetAll() });
         }
     }
 }

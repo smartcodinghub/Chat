@@ -7,7 +7,8 @@ namespace Chat.Server.Infraestructure.Data
     {
         User Find(string name);
         IEnumerable<User> GetAll();
-        void Register(string name, string connectionId);
+        void Register(string name);
         void Remove(string connectionId);
+        bool Update(string name, string connectionId);
     }
 }

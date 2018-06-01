@@ -7,9 +7,8 @@
         @foreach(User user in Model.Users)
         {
             <div class="users-row">
-                <a asp-controller="Chat" asp-action="Index">@user.Name</a>
+                <a asp-controller="Chat" asp-action="With" asp-route-user="@user.Name">@user.Name</a>
             </div>
         }
     </div>
-
 </div>

@@ -1,0 +1,21 @@
+﻿@model ChatViewModel;
+
+<h2>Chatting with @Model.OtherUser</h2>
+
+<div class="chat-view">
+    <div id="chat-messages">
+
+    </div>
+
+    <div id="chat-send">
+        <div class="row">
+            <div class="col-sm-11"><input id="chat-text" class="form-control" type="text" /></div>
+            <div class="col-sm-1">
+                <button id="chat-send-button" class="btn btn-primary form-control"><i class="glyphicon glyphicon-play"></i>Send</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/js/signalr.js"></script>
+<script>const username = "@Model.OtherUser";</script>
+<script src="~/js/chat-with.js"></script>

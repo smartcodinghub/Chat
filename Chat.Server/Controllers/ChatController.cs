@@ -11,11 +11,14 @@ using Microsoft.AspNetCore.Mvc;
 namespace Chat.Server.Controllers
 {
     [Authorize]
+    [Route("[controller]/[action]")]
     public class ChatController : Controller
     {
-        public IActionResult Index()
+        [HttpGet]
+        [Route("{user}")]
+        public IActionResult With(string user)
         {
-            return View(new ChatViewModel() { OtherUser = "Paco" });
+            return View(new ChatViewModel() { OtherUser = user });
         }
     }
 }

@@ -10,10 +10,9 @@ namespace Chat.Server.Models
         public string Name { get; set; }
         public string ConnectionId { get; set; }
 
-        public User(string name, string connectionId)
+        public User(string name)
         {
             Name = name;
-            ConnectionId = connectionId;
         }
     }
 }
