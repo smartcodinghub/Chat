@@ -8,6 +8,6 @@ En la rama ```clean``` tenéis el proyectos ya preparado para hacerlo. En la ram
 
 ### Ponente:
 
-* **Óscar Vicente Pérez** (Arq .Net)
-  * Email: ovicente@minsait.com, osvipe95@gmail.com
-  * LinkedIn: https://www.linkedin.com/in/oscarvicenteperez/
+**Óscar Vicente Pérez** (Arq .Net)
+* Email: ovicente@minsait.com, osvipe95@gmail.com
+* LinkedIn: https://www.linkedin.com/in/oscarvicenteperez/
